@@ -3,6 +3,10 @@ package com.takezo.platformer.window;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+
+import com.takezo.platformer.framework.ObjectId;
+import com.takezo.platformer.objects.Test;
+
 import java.awt.Color;
 
 public class Game extends Canvas implements Runnable{
@@ -11,6 +15,14 @@ public class Game extends Canvas implements Runnable{
 
 	private boolean running = false;
 	private Thread thread;
+	
+	//Object
+	Handler handler;
+	
+	public void init() {
+		handler = new Handler();
+		handler.addObject(new Test(100, 100, ObjectId.Test));
+	}
 	
 	public synchronized void start() {
 		if(running)
@@ -22,6 +34,8 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public void run() {
+		init();
+		this.requestFocus();
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -52,7 +66,7 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	private void tick() {
-		
+		handler.tick();
 	}
 	
 	private void render() {
@@ -68,7 +82,7 @@ public class Game extends Canvas implements Runnable{
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		
+		handler.render(g);
 		
 		////////////////////////////////////
 		g.dispose();
