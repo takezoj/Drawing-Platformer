@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import com.takezo.platformer.framework.ObjectId;
-import com.takezo.platformer.objects.Test;
+import com.takezo.platformer.objects.Block;
 
 import java.awt.Color;
 
@@ -16,12 +16,18 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	private Thread thread;
 	
+	public static int WIDTH, HEIGHT; 
+	
 	//Object
 	Handler handler;
 	
 	public void init() {
+		WIDTH = getWidth();
+		HEIGHT = getHeight();
+		
 		handler = new Handler();
-		handler.addObject(new Test(100, 100, ObjectId.Test));
+		
+		handler.createLevel();
 	}
 	
 	public synchronized void start() {
