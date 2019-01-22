@@ -6,6 +6,7 @@ import java.awt.image.BufferStrategy;
 
 import com.takezo.platformer.framework.ObjectId;
 import com.takezo.platformer.objects.Block;
+import com.takezo.platformer.objects.Player;
 
 import java.awt.Color;
 
@@ -26,6 +27,8 @@ public class Game extends Canvas implements Runnable{
 		HEIGHT = getHeight();
 		
 		handler = new Handler();
+		
+		handler.addObject(new Player(100, 100, ObjectId.Player));
 		
 		handler.createLevel();
 	}
