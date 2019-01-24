@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import com.takezo.platformer.framework.KeyInput;
 import com.takezo.platformer.framework.ObjectId;
 import com.takezo.platformer.objects.Block;
 import com.takezo.platformer.objects.Player;
@@ -31,6 +32,9 @@ public class Game extends Canvas implements Runnable{
 		handler.addObject(new Player(100, 100, ObjectId.Player));
 		
 		handler.createLevel();
+		
+		this.addKeyListener(new KeyInput(handler));
+		
 	}
 	
 	public synchronized void start() {
