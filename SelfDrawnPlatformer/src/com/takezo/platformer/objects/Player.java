@@ -8,27 +8,50 @@ import java.util.LinkedList;
 
 import com.takezo.platformer.framework.GameObject;
 import com.takezo.platformer.framework.ObjectId;
+import com.takezo.platformer.window.Handler;
 
 public class Player extends GameObject{
 	
 	private int width = 32, height = 64;
 	private float gravity = 0.3f;
 	private final float MAXSPEED = 10;
+	
+	private Handler handler;
 
-	public Player(float x, float y, ObjectId id) {
+	public Player(float x, float y, Handler handler, ObjectId id) {
 		super(x, y, id);
-
+		this.handler = handler; 
 	}
 
 	public void tick(LinkedList<GameObject> object) {
 		x += velX;
-		//y += velY;
+		y += velY;
 		
 		if(falling || jumping) {
 			velY += gravity;
 			
 			if(velY > MAXSPEED)
 				velY = 10;
+		}
+		
+		Collision(object);
+		
+	}
+	
+	public void Collision(LinkedList<GameObject> object) {
+		
+		for(int i = 0; i < handler.object.size(); i++) {
+			
+			GameObject tempObject = handler.object.get(i);
+			
+			if(tempObject.getId() == ObjectId.Block) {
+				if(getBounds().intersects(tempObject.getBounds())) {
+					y = tempObject.getY() - height;
+					velY = 0;
+					falling = false;
+					jumping = false;
+				}
+			}
 		}
 		
 	}

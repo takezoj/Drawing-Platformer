@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable{
 		
 		handler = new Handler();
 		
-		handler.addObject(new Player(100, 100, ObjectId.Player));
+		handler.addObject(new Player(100, 100, handler, ObjectId.Player));
 		
 		handler.createLevel();
 		
