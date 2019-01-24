@@ -30,6 +30,8 @@ public class KeyInput extends KeyAdapter{
 					tempObject.setVelX(-5);
 				if(key == KeyEvent.VK_D)
 					tempObject.setVelX(5);
+				if(key == KeyEvent.VK_W)
+					tempObject.setVelY(-5);
 			}
 		}
 		
@@ -47,6 +49,7 @@ public class KeyInput extends KeyAdapter{
 					tempObject.setVelX(0);
 				if(key == KeyEvent.VK_D)
 					tempObject.setVelX(0);
+				
 			}
 		}
 	}
