@@ -47,7 +47,7 @@ public class Player extends GameObject{
 			if(tempObject.getId() == ObjectId.Block) {
 				
 				if(getBoundsTop().intersects(tempObject.getBounds())) {
-					y = tempObject.getY() - height/2;
+					y = tempObject.getY() + height/2;
 					velY = 0;					
 				}
 				
@@ -85,7 +85,7 @@ public class Player extends GameObject{
 	}
 
 	public Rectangle getBounds() {
-		return new Rectangle((int)((int)x+(width/2)-((width/2)/2)), (int)((int)y+(height/2)), (int)width/2, (int)height/2);
+		return new Rectangle((int)((int)x+(width/2)-(width/4)), (int)((int)y+(height/2)), (int)width/2, (int)height/2);
 	}
 	
 	public Rectangle getBoundsTop() {

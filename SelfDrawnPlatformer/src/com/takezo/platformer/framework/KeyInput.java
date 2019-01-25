@@ -32,7 +32,7 @@ public class KeyInput extends KeyAdapter{
 					tempObject.setVelX(5);
 				if(key == KeyEvent.VK_W && !tempObject.isJumping()) {
 					tempObject.setJumping(true);
-					tempObject.setVelY(-10);
+					tempObject.setVelY(-9);
 				}
 			}
 		}
