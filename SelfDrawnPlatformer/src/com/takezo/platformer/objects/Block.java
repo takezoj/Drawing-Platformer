@@ -24,6 +24,7 @@ public class Block extends GameObject{
 
 		g.setColor(Color.white);
 		g.drawRect((int)x, (int)y, 32, 32);
+		
 	}
 
 

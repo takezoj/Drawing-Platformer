@@ -104,6 +104,6 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public static void main(String[] args) {
-		new Window(800, 600, "Dis a Gayme Title", new Game());
+		new Window(800, 600, "Dis a Gayme Tytle", new Game());
 	}
 }

@@ -45,6 +45,12 @@ public class Player extends GameObject{
 			GameObject tempObject = handler.object.get(i);
 			
 			if(tempObject.getId() == ObjectId.Block) {
+				
+				if(getBoundsTop().intersects(tempObject.getBounds())) {
+					y = tempObject.getY() - height/2;
+					velY = 0;					
+				}
+				
 				if(getBounds().intersects(tempObject.getBounds())) {
 					y = tempObject.getY() - height;
 					velY = 0;
@@ -52,7 +58,16 @@ public class Player extends GameObject{
 					jumping = false;
 				}else
 					falling = true;
+				
+				if(getBoundsRight().intersects(tempObject.getBounds())) {
+					x = tempObject.getX() - width;				
+				}
+				
+				if(getBoundsLeft().intersects(tempObject.getBounds())) {
+					x = tempObject.getX() + width;				
+				}
 			}
+			
 		}
 		
 	}
@@ -70,18 +85,18 @@ public class Player extends GameObject{
 	}
 
 	public Rectangle getBounds() {
-		return new Rectangle((int)(x+(width/2)-(width/2/2)), ((int)y+(height/2)), (int)width/2, (int)height/2);
-	}
-	
-	public Rectangle getBoundsRight() {
-		return new Rectangle((int)(x+(width/2)-(width/2/2)), (int)y, (int)width/2, (int)height/2);
-	}
-	
-	public Rectangle getBoundsLeft() {
-		return new Rectangle((int)x+width-5, (int)y+5, (int)5, (int)height-10);
+		return new Rectangle((int)((int)x+(width/2)-((width/2)/2)), (int)((int)y+(height/2)), (int)width/2, (int)height/2);
 	}
 	
 	public Rectangle getBoundsTop() {
+		return new Rectangle((int)((int)x+(width/2)-(width/2/2)), (int)y, (int)width/2, (int)height/2);
+	}
+	
+	public Rectangle getBoundsRight() {
+		return new Rectangle((int)((int)x+width-5), (int)y+5, (int)5, (int)height-10);
+	}
+	
+	public Rectangle getBoundsLeft() {
 		return new Rectangle((int)x, (int)y+5, (int)5, (int)height-10);
 	}
 

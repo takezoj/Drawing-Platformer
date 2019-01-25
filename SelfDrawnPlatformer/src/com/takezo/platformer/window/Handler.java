@@ -38,6 +38,8 @@ public class Handler {
 	public void createLevel() {
 		for(int xx = 0; xx < Game.WIDTH + 32; xx += 32)
 			addObject(new Block(xx, Game.HEIGHT - 32, ObjectId.Block));
+		for(int xx = 300; xx < 600; xx += 32)
+			addObject(new Block(xx, 450, ObjectId.Block));
 	}
 	
 }
