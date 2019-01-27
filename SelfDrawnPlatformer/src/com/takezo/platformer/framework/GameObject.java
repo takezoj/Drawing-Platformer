@@ -11,6 +11,13 @@ public abstract class GameObject {
 	protected float velX = 0, velY = 0;
 	protected boolean falling = true;
 	protected boolean jumping = false;
+	protected int direction = 1;
+	//1 = right
+	//-1 = left
+	
+	public int getDirection() {
+		return direction;
+	}
 	
 	public boolean isFalling() {
 		return falling;

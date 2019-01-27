@@ -27,6 +27,11 @@ public class Player extends GameObject{
 		x += velX;
 		y += velY;
 		
+		if(velX < 0)
+			direction = -1;
+		if(velX > 0)
+			direction = 1;
+		
 		if(falling || jumping) {
 			velY += gravity;
 			
@@ -45,24 +50,25 @@ public class Player extends GameObject{
 			GameObject tempObject = handler.object.get(i);
 			
 			if(tempObject.getId() == ObjectId.Block) {
-				
+				//top collision
 				if(getBoundsTop().intersects(tempObject.getBounds())) {
 					y = tempObject.getY() + height/2;
 					velY = 0;					
 				}
-				
+				//bottom collision
 				if(getBounds().intersects(tempObject.getBounds())) {
 					y = tempObject.getY() - height;
 					velY = 0;
 					falling = false;
 					jumping = false;
-				}else
+				}else 
 					falling = true;
 				
+				//right collision
 				if(getBoundsRight().intersects(tempObject.getBounds())) {
 					x = tempObject.getX() - width;				
 				}
-				
+				//left collision
 				if(getBoundsLeft().intersects(tempObject.getBounds())) {
 					x = tempObject.getX() + width;				
 				}
@@ -76,12 +82,14 @@ public class Player extends GameObject{
 		g.setColor(Color.white);
 		g.fillRect((int)x, (int)y, (int)width, (int)height);
 		
+		/* visualization for collision bounds
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(Color.red);
 		g2d.draw(getBounds());
 		g2d.draw(getBoundsRight());
 		g2d.draw(getBoundsLeft());
 		g2d.draw(getBoundsTop());
+		*/
 	}
 
 	public Rectangle getBounds() {
